@@ -58,6 +58,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
+		<!-- Thymeleafを使用するために必要　記載内容はmvnrepositoryから取得（上記URL） -->
+		<dependency>
+		    <groupId>org.thymeleaf</groupId>
+		    <artifactId>thymeleaf-spring4</artifactId>
+		    <version>3.0.11.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
+		<!-- Thymeleaf レイアウトインポート -->
+		<dependency>
+		    <groupId>nz.net.ultraq.thymeleaf</groupId>
+		    <artifactId>thymeleaf-layout-dialect</artifactId>
+		    <version>2.4.1</version>
+		</dependency>
+		
+		
 	</dependencies>
 
 	<build>
