@@ -7,28 +7,30 @@
 <div layout:fragment="content_div">
 	<!-- Top -->
 	<div id="top">
-		<!-- Header -->
-		<div id ="header">
-			<h1 id="logo">
-				<a href="#"><img th:src="@{/css/images/logo.jpg}"
-					style="width: 200px; height: 61px; float: left;">
-				</a>
-			</h1>
-			<div id="navigation">
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">My Cart</a></li>
-					<li class="last"><a href="#">Contact</a></li>
-				</ul>
+		<div class="shell">
+			<!-- Header -->
+			<div id ="header">
+				<h1 id="logo">
+					<a href="#"><img th:src="@{/css/images/logo.jpg}"
+						style="width: 200px; height: 61px; float: left;">
+					</a>
+				</h1>
+				<div id="navigation">
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">My Account</a></li>
+						<li><a href="#">My Cart</a></li>
+						<li class="last"><a href="#">Contact</a></li>
+					</ul>
+				</div>
 			</div>
+			<!-- End Header -->
 		</div>
-		<!-- End Header -->
 		<!-- Slider -->
 		<div id="slider">
 			<div id="slider-holder">
 				<ul>
-					<!-- <li><a href="#"><img th:src="{@/css/images/top.jpg}" alt="" /></a></li>-->
+					<!-- <li><a href="#"><img th:src="@{/css/images/top.jpg}" alt="" /></a></li>-->
 				</ul>
 			</div>
 		</div>
@@ -37,10 +39,10 @@
 	<!-- End Top -->
 	<!-- Main -->
 	<div id="main">
-		<div id="shell">
+		<div class="shell">
 			<!-- Search, etc -->
-			<div id="options">
-				<div id="search">
+			<div class="options">
+				<div class="search">
 					<form action="#" method="post">
 						<span class="field">
 							<input type="text" class="blink" value="SEARCH" title="SEARCH" />
@@ -49,7 +51,7 @@
 					</form>
 				</div>
 				<span class="left" ><a href="#">Advanced Search</a></span>
-				<div id="right">
+				<div class="right">
 					<span class="cart">
 						<!-- <a href="#" class="cart-ico">&nbsp;</a><strong>$0.00</strong> -->
 					</span>
@@ -58,7 +60,7 @@
 					</span>
 				</div>
 			</div>
-			<!-- End Srerch,etc -->
+			<!-- End Search,etc -->
 			<!-- Content -->
 			<div id="content">
 				<div class="tabs">
@@ -78,9 +80,9 @@
 							<div class="items">
 								<div class="cl">&nbsp;</div>
 								<ul>
-									<li th:id="${product.id}" class="b-item" th:each="product : ${produts}">
+									<li th:id="${product.id}" class="b-item" th:each="product : ${products}">
 										<div class="image">
-											<a href="#"><img th:src="@{/images} + ${produts.imagePath}" /></a>							
+											<a href="#"><img th:src="@{/images/} + ${produts.imagePath}" /></a>							
 										</div>
 										<p>
 											Product Name: <a href="#" th:text="${product.name}"></a>
@@ -120,7 +122,7 @@
 		$(".b-item").click(function(){
 			var val = $(this).attr("id");
 			console.log("val :" + val);
-			window.location.href="contextPath + '/shop/product/' + val;
+			window.location.href=contextPath + '/shop/product/' + val;
 		});
 		
 		$(document).on("click", '.categories', function() {
@@ -130,16 +132,16 @@
 			window.location.href = '/rosso-ec/shop/top/' + id;
 		});
 		
-		$("insertBtn").click(function() {
-			window.location.href='rosso-ec/shop/product';
-		})
-	}):
+		$("#insertBtn").click(function() {
+			window.location.href='/rosso-ec/shop/product';
+		});
+	});
 
 	function getContextPath() {
 		var hostIndex = location.href.indexOf(location.host) + location.host.length;
 		var contextPath = location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
-		return window.location.origin + contextpath + "";
-	}
+		return window.location.origin + contextPath + "";
+	};
 </script>
 </content>
 </body>
