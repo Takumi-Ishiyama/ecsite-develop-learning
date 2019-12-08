@@ -6,35 +6,23 @@
 <body>
 <div layout:fragment="content_div">
 	<!-- Top -->
-	<div id="top">
+	<div id="product-top">
 		<div class="shell">
 			<!-- Header -->
-			<div id ="header">
+			<div id="header">
 				<h1 id="logo">
-					<a href="#"><img th:src="@{/css/images/logo.jpg}"
-						style="width: 200px; height: 61px; float: left;">
-					</a>
+					<a href="#"><img th:src="@{/css/images/logo.jpg}" style="width: 200px; height: 61px; float: left;"></a>
 				</h1>
 				<div id="navigation">
 					<ul>
 						<li><a href="#">Home</a></li>
 						<li><a href="#">My Account</a></li>
 						<li><a href="#">My Cart</a></li>
-						<li class="last"><a href="#">Contact</a></li>
 					</ul>
 				</div>
 			</div>
 			<!-- End Header -->
 		</div>
-		<!-- Slider -->
-		<div id="slider">
-			<div id="slider-holder">
-				<ul>
-					<!-- <li><a href="#"><img th:src="@{/css/images/top.jpg}" alt="" /></a></li>-->
-				</ul>
-			</div>
-		</div>
-		<!-- End Slider -->
 	</div>
 	<!-- End Top -->
 	<!-- Main -->
@@ -65,7 +53,7 @@
 			<div id="content">
 				<div class="tabs">
 					<ul>
-						<li th:each="category : ${categories}" th : id="${'categoey_' + category.id}" class="categories">
+						<li th:each="category : ${categories}" th:id="${'categoey_' + category.id}" class="categories">
 							<a href="#" class="">
 								<span th:text="${category.name}"></span>
 							</a>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+	<title>Rosso Shopping</title>
+	<meta http-equiv="Content-type" content="/text/html; charset=UTF-8" />
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/style.css?20180901_1435}" type="text/css" media="all"></link>
+	<link rel="stylesheet" th:href="@{/css/common.css}" ></link>
+</head>
+<body>
+	<div layout:fragment="content_div" id="wrap"></div>
+	<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js?20180825}"></script>
+	<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+	<content layout:fragment="local_script" />
+</body>
+</html>
