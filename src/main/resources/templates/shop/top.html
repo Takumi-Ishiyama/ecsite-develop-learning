@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/base-layout">
 <head>
 <meta charset="utf-8">
@@ -6,7 +6,7 @@
 <body>
 <div layout:fragment="content_div">
 	<!-- Top -->
-	<div id="product-top">
+	<div id="top">
 		<div class="shell">
 			<!-- Header -->
 			<div id="header">
@@ -18,10 +18,20 @@
 						<li><a href="#">Home</a></li>
 						<li><a href="#">My Account</a></li>
 						<li><a href="#">My Cart</a></li>
+						<li class="last"><a href="#">Contact</a></li>
 					</ul>
 				</div>
 			</div>
 			<!-- End Header -->
+			<!-- Slider -->
+			<div id="slider">
+				<div id="slider-holder">
+					<ul>
+						<!-- <li><a href="#"><img th:src="@{/css/images/top.jpg}" alt="" /></a></li> -->
+					</ul>
+				</div>
+			</div>
+			<!-- End Slider -->
 		</div>
 	</div>
 	<!-- End Top -->
@@ -53,7 +63,7 @@
 			<div id="content">
 				<div class="tabs">
 					<ul>
-						<li th:each="category : ${categories}" th:id="${'categoey_' + category.id}" class="categories">
+						<li th:each="category : ${categories}" th:id="${'category_' + category.id}" class="categories">
 							<a href="#" class="">
 								<span th:text="${category.name}"></span>
 							</a>
@@ -70,7 +80,7 @@
 								<ul>
 									<li th:id="${product.id}" class="b-item" th:each="product : ${products}">
 										<div class="image">
-											<a href="#"><img th:src="@{/images/} + ${produts.imagePath}" /></a>							
+											<a href="#"><img th:src="@{/images/} + ${product.imagePath}" /></a>							
 										</div>
 										<p>
 											Product Name: <a href="#" th:text="${product.name}"></a>
@@ -103,21 +113,21 @@
 	4.画像など含めすべてのコンテンツの読み込みが終わる
 	5.$(window).loadが実行
 	*/
-	$(document) .ready(function(){
-		var contextPath = getContextPath);
-		console.log("contextPath :" + contextPath);
+	$(document).ready(function(){
+		var contextPath = getContextPath();
+		console.log("contextPath : " + contextPath);
 		
 		$(".b-item").click(function(){
 			var val = $(this).attr("id");
-			console.log("val :" + val);
-			window.location.href=contextPath + '/shop/product/' + val;
+			console.log("val : " + val);
+			window.location.href= contextPath + '/shop/product/' + val;
 		});
 		
 		$(document).on("click", '.categories', function() {
 			var id = $(this).attr("id");
 			id = id.substring(id.indexOf("_") + 1);
-			console.log("id :" + id);
-			window.location.href = '/rosso-ec/shop/top/' + id;
+			console.log("id : " + id);
+			window.location.href='/rosso-ec/shop/top/' + id;
 		});
 		
 		$("#insertBtn").click(function() {
@@ -126,8 +136,8 @@
 	});
 
 	function getContextPath() {
-		var hostIndex = location.href.indexOf(location.host) + location.host.length;
-		var contextPath = location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1));
 		return window.location.origin + contextPath + "";
 	};
 </script>
