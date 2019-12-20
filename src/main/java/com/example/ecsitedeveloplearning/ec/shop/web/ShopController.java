@@ -1,6 +1,7 @@
 package com.example.ecsitedeveloplearning.ec.shop.web;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class ShopController {
 	}
 	
 	//Top画面
-	@GetMapping("top/{categoryId}")
+	@GetMapping("/top/{categoryId}")
 	public ModelAndView viewTopByCategory(@PathVariable int categoryId) {
 		ModelAndView mv = new ModelAndView("shop/top");
 		List<Product> products = shopService.findAllByCategory(categoryId);
@@ -83,6 +84,7 @@ public class ShopController {
 		product.setCategoryId(new Category(category, null));
 		product.setPrice(price);
 		product.setDescription("description");
+		product.setCreated(new Date());
 		
 		shopService.register(product, image);
 		return "redirect:/shop/top";

@@ -34,7 +34,7 @@
 		<div class="shell">
 			<!-- Search, etc -->
 			<div class="options">
-				<span class="left" ><a href="#" class="ft28"></a></span>
+				<span class="left" ><a href="#" class="ft28">商品詳細</a></span>
 			</div>
 			<!-- End Search, etc -->
 			<!-- Content -->
@@ -50,11 +50,11 @@
 							</div>
 							<div class="form-area">
 								<h3 style="margin-bottom: 25px;">商品詳細</h3>
-								<img th:src="@{/images/} + ${product.imagePath}" class="img-thumbnail">
+								<img th:src="@{/images/} + ${product.imagePath}" class="img-thumbnail" />
 								<input type="hidden" id="productId" th:value="${product.id}">
 								<h2>商品番号 : <span th:text="${product.id}"></span></h2>
 								<h2>商品名 : <span th:text="${product.name}"></span></h2>
-								<h2>カテゴリ名 : <span th:text="${product.categoryId.name"></span></h2>
+								<h2>カテゴリ名 : <span th:text="${product.categoryId.name}"></span></h2>
 								<h2>価格 : <span th:text="${'￥' + product.price}"></span></h2>
 								<h2>商品説明 : <span th:text="${product.description}"></span></h2>
 								<h2>登録日 : <span th:text="${product.created}"></span></h2>
@@ -74,7 +74,7 @@
 	$(document).ready(function(){
 		//Topページ
 		$("#bt_back").click(function(){
-			window.location.href='/rosso-ec/shop/top'"
+			window.location.href='/rosso-ec/shop/top'
 		});
 		
 		//商品修正ページ
