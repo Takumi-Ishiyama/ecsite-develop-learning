@@ -83,7 +83,7 @@ public class ShopController {
 		product.setName(name);
 		product.setCategoryId(new Category(category, null));
 		product.setPrice(price);
-		product.setDescription("description");
+		product.setDescription(description);
 		product.setCreated(new Date());
 		
 		shopService.register(product, image);
