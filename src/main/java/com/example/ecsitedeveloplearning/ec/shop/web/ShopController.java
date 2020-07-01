@@ -85,6 +85,7 @@ public class ShopController {
 		product.setPrice(price);
 		product.setDescription(description);
 		product.setCreated(new Date());
+		product.setUpdated(new Date());
 		
 		shopService.register(product, image);
 		return "redirect:/shop/top";
@@ -126,6 +127,7 @@ public class ShopController {
 		product.setCategoryId(new Category(category, null));
 		product.setPrice(price);
 		product.setDescription(description);
+		product.setUpdated(new Date());
 		
 		shopService.update(product, image);
 		return "redirect:/shop/top";

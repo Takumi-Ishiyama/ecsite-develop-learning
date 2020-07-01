@@ -44,8 +44,8 @@ public class ShopService {
 	public void register(Product product, MultipartFile image) {
 		String imagePath = saveImageFile(image);
 		if (imagePath.length() > 0) {
-			product.setImagePath(imagePath);
 			productRepository.save(product);
+			product.setImagePath(imagePath);
 		}
 	}
 	
@@ -107,7 +107,14 @@ public class ShopService {
 		String imagePath = saveImageFile(image);
 		if (imagePath.length() > 0) {
 			product.setImagePath(imagePath);
-			productRepository.save(product);
+			productRepository.update(
+					product.getId(),
+					product.getName(),
+					product.getCategoryId().getId(),
+					product.getPrice(),
+					product.getDescription(),
+					product.getImagePath()
+			);
 		}
 	}
 	

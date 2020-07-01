@@ -15,11 +15,11 @@
 			<!-- Header -->
 			<div id="header">
 				<h1 id="logo">
-					<a href="#"><img th:src="@{/css/images/logo.jpg}" style="width: 200px; height: 61px; float: left;"></a>
+					<a href="/rosso-ec/shop/top"><img th:src="@{/css/images/logo.jpg}" style="width: 200px; height: 61px; float: left;"></a>
 				</h1>
 				<div id="navigation">
 					<ul>
-						<li><a href="#">Home</a></li>
+						<li><a href="/rosso-ec/shop/top">Home</a></li>
 						<li><a href="#">My Account</a></li>
 						<li><a href="#">My Cart</a></li>
 					</ul>
@@ -85,14 +85,14 @@
 		});
 		
 		//商品削除
-		$("$bt_delete").click(function() {
+		$("#bt_delete").click(function() {
 			var result = confirm("この商品を削除しますか");
-			var productId = $('productId').val();
+			var productId = $('#productId').val();
 			console.log("id : " + productId);
 			if (result) {
 				$.ajax({
 					type: "POST",
-					url: "/rosso-ec/shop/delete/product" + productId,
+					url: "/rosso-ec/shop/delete/product/" + productId,
 					success: function(result) {
 						console.log(result);
 						window.location = '/rosso-ec/shop/top'
