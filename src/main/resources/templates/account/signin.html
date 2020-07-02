@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/base-layout">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<div layout:fragment="content_div">
+	<!-- Header -->
+	<div id="header">
+		<h1 id="logo">
+			<a href="/rosso-ec/shop/top"><img th:src="@{/css/images/logo.jpg}" style="width: 200px; height: 61px; float: left;"></a>
+		</h1>
+	</div>
+	<!-- End Header -->
+	<!-- Main -->
+	<div id="main">
+		<div class="content">
+			<div class="signinBox" style="text-align: center;">
+				<div class="signinBoxTitle">ログイン画面</div>
+				 <div th:if="${param.error}">
+				 	Invalid userId and password.
+			 	</div>
+			 	<div th:if="${param.logout}">
+			 		You have been logged out.
+			 	</div>
+			 	<form th:action="@{/account/signin}" method="post">
+			 		<dl class="signinDataForm">
+						<dt>ユーザID</dt>
+						<dd><input type="text" name="userId" placeholder="ユーザID" /></dd>
+						<dt>パスワード</dt>
+						<dd><input type="password" name="password" placeholder="パスワード" /></dd>
+					</dl>
+					<button type="button" id="bt_signin" name="submit" class="btn btn-primary btn-lg">Sign In</button>
+					<button type="button" id="bt_back" name="submit" class="btn btn-success btn-lg">Back</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<content layout:fragment="local_script">
+<script type="text/javascript">
+	/**
+	実行タイミングメモ
+	1.ページの読み込みが始まる
+	2.HTMLの読み込みが終わる
+	3.$(document).readyが実行
+	4.画像など含めすべてのコンテンツの読み込みが終わる
+	5.$(window).loadが実行
+	*/
+	$(document).ready(function(){
+		var contextPath = getContextPath();
+		console.log("contextPath : " + contextPath);
+		
+		$("#bt_back").click(function() {
+			window.location.href='/rosso-ec/shop/top';
+		});
+
+	});
+
+	function getContextPath() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1));
+		return window.location.origin + contextPath + "";
+	};
+</script>
+</content>
+</body>
+</html>

@@ -18,10 +18,10 @@ public class AccountController {
 	private AccountService accountService;
 	
 	// Top Page
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String viewLogin() {
 		System.out.println("viewLogin");
-		return "account/login";
+		return "account/signin";
 	}
 	
 	//Top Page

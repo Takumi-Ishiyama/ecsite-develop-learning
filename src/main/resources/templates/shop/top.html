@@ -120,7 +120,7 @@
 		$(".b-item").click(function(){
 			var val = $(this).attr("id");
 			console.log("val : " + val);
-			window.location.href= contextPath + '/shop/product/' + val;
+			window.location.href= contextPath + '/shop/detail/product/' + val;
 		});
 		
 		$(document).on("click", '.categories', function() {
@@ -131,7 +131,7 @@
 		});
 		
 		$("#insertBtn").click(function() {
-			window.location.href='/rosso-ec/shop/product';
+			window.location.href='/rosso-ec/shop/register/product';
 		});
 		
 		$("#bt_back").click(function() {

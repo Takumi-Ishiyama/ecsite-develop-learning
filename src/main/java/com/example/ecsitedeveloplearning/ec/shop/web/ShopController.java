@@ -52,7 +52,7 @@ public class ShopController {
 	}
 	
 	//商品登録画面
-	@GetMapping("/product")
+	@GetMapping("/register/product")
 	public ModelAndView viewRegisterProduct() {
 		ModelAndView mv = new ModelAndView("shop/registerProduct");
 		List<Category> categories = shopService.findCategories();
@@ -71,7 +71,7 @@ public class ShopController {
 	}
 	
 	//商品登録
-	@PostMapping("/product")
+	@PostMapping("/register/product")
 	public String insertProduct(
 					@RequestParam("name") String name,
 					@RequestParam("category") int category,
@@ -92,7 +92,7 @@ public class ShopController {
 	}
 	
 	//商品詳細画面
-	@GetMapping("/product/{productId}")
+	@GetMapping("/detail/product/{productId}")
 	public ModelAndView viewProduct(@PathVariable long productId) {
 		ModelAndView mv = new ModelAndView("shop/viewProduct");
 		Product product = shopService.findProductById(productId);
