@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "accounts")
-public class Account {
+public class Account{
 	
 	@Id
 	@Column(name = "id")

@@ -15,23 +15,23 @@
 	<!-- Main -->
 	<div id="main">
 		<div class="content">
-			<div class="signinBox" style="text-align: center;">
-				<div class="signinBoxTitle">ログイン画面</div>
+			<div class="loginBox" style="text-align: center;">
+				<div class="loginBoxTitle">ログイン画面</div>
 				 <div th:if="${param.error}">
 				 	Invalid userId and password.
 			 	</div>
 			 	<div th:if="${param.logout}">
 			 		You have been logged out.
 			 	</div>
-			 	<form th:action="@{/account/signin}" method="post">
-			 		<dl class="signinDataForm">
+			 	<form action="/rosso-ec/account/auth" method="post" class="loginForm" id="loginForm">
+			 		<dl>
 						<dt>ユーザID</dt>
-						<dd><input type="text" name="userId" placeholder="ユーザID" /></dd>
+						<dd><input type="text" id="userId" name="userId" placeholder="ユーザID" /></dd>
 						<dt>パスワード</dt>
-						<dd><input type="password" name="password" placeholder="パスワード" /></dd>
+						<dd><input type="password" id="password" name="password" placeholder="パスワード" /></dd>
 					</dl>
-					<button type="button" id="bt_signin" name="submit" class="btn btn-primary btn-lg">Sign In</button>
-					<button type="button" id="bt_back" name="submit" class="btn btn-success btn-lg">Back</button>
+					<button type="submit" id="bt_login" name="submit" class="btn btn-success btn-lg">Sign In</button>
+					<button type="button" id="bt_back" name="submit" class="btn btn-primary btn-lg">Back</button>
 				</form>
 			</div>
 		</div>
@@ -54,7 +54,9 @@
 		$("#bt_back").click(function() {
 			window.location.href='/rosso-ec/shop/top';
 		});
-
+		$("#bt_login").click(function() {
+			$('form').submit();
+		});
 	});
 
 	function getContextPath() {
