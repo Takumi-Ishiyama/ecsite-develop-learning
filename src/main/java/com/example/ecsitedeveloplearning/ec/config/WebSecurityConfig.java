@@ -1,6 +1,5 @@
 package com.example.ecsitedeveloplearning.ec.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,13 +8,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
-import com.example.ecsitedeveloplearning.ec.account.form.LoginForm;
-
 
 @Configuration
 @EnableWebSecurity
@@ -48,14 +41,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginProcessingUrl("/account/auth")		//認証の処理を行うURL
 				.loginPage("/account/login")		//認証ページ
-				.failureUrl("/login?error")		//認証失敗URL
+				.failureUrl("/account//login?error")		//認証失敗URL
 				.defaultSuccessUrl("/shop/top",false)	//認証成功時URL
 				.usernameParameter("userId")				//ログイン画面のinputのuserIdをチェック
 				.passwordParameter("password")			//ログイン画面のinputのpasswordをチェック
 				.permitAll()	//ログイン画面の設定 アクセス制限なし
 				.and()
 			.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("signout"))	//ログアウトのURL
+				.logoutRequestMatcher(new AntPathRequestMatcher("/account/login?logout"))	//ログアウトのURL
 				.logoutSuccessUrl("/shop/top")	//ログアウト成功後URL
 				.deleteCookies("JSESSIONID")	//ログアウト成功後、cookieのJSESSIONIDを削除する
 				.invalidateHttpSession(true);		//ログアウトしたらセッションを無効にする

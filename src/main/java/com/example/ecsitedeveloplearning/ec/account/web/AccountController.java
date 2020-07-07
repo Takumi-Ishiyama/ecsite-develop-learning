@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.ecsitedeveloplearning.ec.account.form.LoginForm;
 import com.example.ecsitedeveloplearning.ec.account.model.Account;
 import com.example.ecsitedeveloplearning.ec.account.service.AccountService;
 
@@ -19,12 +18,7 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService accountService;
-	
-	@ModelAttribute
-	LoginForm setUpForm() {
-		return new LoginForm();
-	}
-	
+
 	// Top Pageを表示
 	@GetMapping("/login")
 	public String viewLogin() {
@@ -43,12 +37,16 @@ public class AccountController {
 
 	//認証処理
 	@PostMapping("/auth")
-	public void authAccount(LoginForm form) {
+	public String authAccount(
+				@RequestParam("userId") String userId,
+				@RequestParam("password") String password
+			) {
 		/*
 		if(accountService.authCheck(userId, password).equals(null)) {
 			return "account/login?error";
 		}
 		*/
-		accountService.getUserProfile(form.getUserId(), form.getPassword());
+		accountService.getUserProfile(userId, password);
+		return "redirect:/shop/top";
 	}
 }
