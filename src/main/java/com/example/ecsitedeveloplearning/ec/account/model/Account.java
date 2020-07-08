@@ -1,6 +1,8 @@
 package com.example.ecsitedeveloplearning.ec.account.model;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +15,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "accounts")
-public class Account{
-	
+public class Account implements UserDetails{
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +54,41 @@ public class Account{
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated", nullable = true)
 	private Date updated;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO 自動生成されたメソッド・スタブ
+		return this.userId;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO 自動生成されたメソッド・スタブ
+		return true;
+	}
+	
 }

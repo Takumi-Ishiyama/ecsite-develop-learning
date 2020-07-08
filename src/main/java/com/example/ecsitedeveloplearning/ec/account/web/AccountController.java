@@ -35,6 +35,7 @@ public class AccountController {
 		return "account/login";
 	}
 
+	/**
 	//認証処理
 	@PostMapping("/auth")
 	public String authAccount(
@@ -45,8 +46,9 @@ public class AccountController {
 		if(accountService.authCheck(userId, password).equals(null)) {
 			return "account/login?error";
 		}
-		*/
+		
 		accountService.getUserProfile(userId, password);
 		return "redirect:/shop/top";
 	}
+	*/
 }

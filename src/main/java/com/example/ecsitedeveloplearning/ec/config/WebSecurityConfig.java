@@ -1,8 +1,9 @@
 package com.example.ecsitedeveloplearning.ec.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,10 +11,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.example.ecsitedeveloplearning.ec.account.service.Impl.JpaDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(
@@ -23,8 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/webjars/**"
 				);
 	}
-	
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -39,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticated()	//その他は認証済みでないとアクセス不可
 			.and()
 			.formLogin()
-				.loginProcessingUrl("/account/auth")		//認証の処理を行うURL
+				.loginProcessingUrl("/auth")		//このURLが指定された際に認証の処理を行う
 				.loginPage("/account/login")		//認証ページ
 				.failureUrl("/account//login?error")		//認証失敗URL
 				.defaultSuccessUrl("/shop/top",false)	//認証成功時URL
@@ -49,10 +51,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/account/login?logout"))	//ログアウトのURL
-				.logoutSuccessUrl("/shop/top")	//ログアウト成功後URL
-				.deleteCookies("JSESSIONID")	//ログアウト成功後、cookieのJSESSIONIDを削除する
-				.invalidateHttpSession(true);		//ログアウトしたらセッションを無効にする
+				.logoutSuccessUrl("/shop/top");	//ログアウト成功後URL
+				//.deleteCookies("JSESSIONID")	//ログアウト成功後、cookieのJSESSIONIDを削除する
+				//.invalidateHttpSession(true);		//ログアウトしたらセッションを無効にする
 	}
+
+	@Configuration
+	protected static class AuthenticationConfigration extends GlobalAuthenticationConfigurerAdapter {
+		@Autowired
+		JpaDetailsServiceImpl userDetailsService;
+		
+		@Override
+		public void init(AuthenticationManagerBuilder auth) throws Exception {
+			auth
+				.userDetailsService(userDetailsService)
+				.passwordEncoder(new BCryptPasswordEncoder());
+		}
+		
+	}
+
 	/*
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -62,7 +79,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authoritiesByUsernameQuery("select user_id as userId, user_type as role from rosso_ec.accounts where userId = ?")
 			.passwordEncoder(new BCryptPasswordEncoder(256));
 	}	
-	*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
@@ -81,4 +97,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+*/
 }
