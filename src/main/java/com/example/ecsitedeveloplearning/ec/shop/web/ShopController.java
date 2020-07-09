@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.util.StringBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecsitedeveloplearning.ec.shop.model.Product;
+import com.example.ecsitedeveloplearning.ec.common.model.SessionModel;
 import com.example.ecsitedeveloplearning.ec.shop.model.Category;
 import com.example.ecsitedeveloplearning.ec.shop.service.ShopService;
 
@@ -26,6 +28,9 @@ public class ShopController {
 	@Autowired
 	private ShopService shopService;
 	
+	@Autowired
+	protected SessionModel sessionModel;
+	
 	@Value("${upload.image.path}")
 	private String uploadImagePath;
 	
@@ -35,6 +40,9 @@ public class ShopController {
 		ModelAndView mv = new ModelAndView("shop/top");
 		List<Product> products = shopService.findAllByCategory(1);
 		List<Category> categories = shopService.findCategories();
+		StringBuilder sb = new StringBuilder();
+		sb.append("テスト");
+		sessionModel.setMsg(sb.toString());
 		mv.addObject("products", products);
 		mv.addObject("categories", categories);
 		return mv;
