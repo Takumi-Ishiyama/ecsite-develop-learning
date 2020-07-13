@@ -4,8 +4,8 @@ import lombok.Getter;
 
 public enum UserType {
 	
-	ROLE_ADMIN("admin"),
-	ROLE_USER("user");
+	admin("ADMIN"),
+	user("USER");
 	
 	@Getter
 	private String value;

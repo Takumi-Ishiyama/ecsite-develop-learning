@@ -40,9 +40,6 @@ public class ShopController {
 		ModelAndView mv = new ModelAndView("shop/top");
 		List<Product> products = shopService.findAllByCategory(1);
 		List<Category> categories = shopService.findCategories();
-		StringBuilder sb = new StringBuilder();
-		sb.append("テスト");
-		sessionModel.setMsg(sb.toString());
 		mv.addObject("products", products);
 		mv.addObject("categories", categories);
 		return mv;

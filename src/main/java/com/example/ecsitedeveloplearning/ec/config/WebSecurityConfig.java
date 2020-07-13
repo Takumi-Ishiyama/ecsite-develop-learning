@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginProcessingUrl("/auth")		//このURLが指定された際に認証の処理を行う
 				.loginPage("/account/login")		//認証ページ
-				.failureUrl("/account//login?error")		//認証失敗URL
+				.failureUrl("/account/login?error")		//認証失敗URL
 				.defaultSuccessUrl("/shop/top",false)	//認証成功時URL
 				.usernameParameter("userId")				//ログイン画面のinputのuserIdをチェック
 				.passwordParameter("password")			//ログイン画面のinputのpasswordをチェック
