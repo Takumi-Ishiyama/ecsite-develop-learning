@@ -6,6 +6,8 @@
 >
 <head>
 <meta charset="utf-8">
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 <body>
 <div layout:fragment="content_div">
@@ -72,6 +74,13 @@
 <content layout:fragment="local_script">
 <script type="text/javascript">
 	$(document).ready(function(){
+
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
+	    $(document).ajaxSend(function(e, xhr, options) {
+	      xhr.setRequestHeader(header, token);
+	    });
+
 		//Topページ
 		$("#bt_back").click(function(){
 			window.location.href='/rosso-ec/shop/top'
