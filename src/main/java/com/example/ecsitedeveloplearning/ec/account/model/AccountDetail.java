@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -22,8 +21,7 @@ public class AccountDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", table = "accounts")
 	private String userId;
 	
 	@Column(name = "first_name")
@@ -49,7 +47,7 @@ public class AccountDetail {
 	private String address2;
 	
 	@Column(name="building_name")
-	private String BuildingName;
+	private String buildingName;
 	
 	@Column(name = "telephone_number")
 	private String telephoneNumber;

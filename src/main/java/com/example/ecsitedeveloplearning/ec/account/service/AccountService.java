@@ -1,12 +1,7 @@
 package com.example.ecsitedeveloplearning.ec.account.service;
-
-import com.example.ecsitedeveloplearning.ec.account.model.Account;
-import com.example.ecsitedeveloplearning.ec.account.model.UserProfile;
+import com.example.ecsitedeveloplearning.ec.account.model.AccountDetail;
+import com.example.ecsitedeveloplearning.ec.account.repository.AccountDetailRepository;
 import com.example.ecsitedeveloplearning.ec.account.repository.AccountRepository;
-import com.example.ecsitedeveloplearning.ec.account.repository.UserRepository;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +9,14 @@ import org.springframework.stereotype.Service;
 public class AccountService {
 	@Autowired
 	private AccountRepository accountRepository;
-
-	@Autowired
-	private UserRepository userRepository;
 	
+	@Autowired
+	private AccountDetailRepository accountDetailRepository;
+	
+	public AccountDetail getAccountDetail(String userId) {
+		return accountDetailRepository.findByUserId(userId);
+	}
+	/**
 	public List<Account> findAll() {
 		return accountRepository.findAll();
 	};
@@ -32,4 +31,5 @@ public class AccountService {
 		UserProfile userProfile = userRepository.getUserProfile(userId, password);
 		return userProfile;
 	}
+	**/
 }
