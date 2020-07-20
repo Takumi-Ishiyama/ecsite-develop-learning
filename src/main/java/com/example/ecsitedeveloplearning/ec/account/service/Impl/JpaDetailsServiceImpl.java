@@ -36,7 +36,7 @@ public class JpaDetailsServiceImpl implements UserDetailsService{
 				.map(role -> new SimpleGrantedAuthority(role.getValue()))
 				.collect(Collectors.toList());
 
-		return new User(account.getUserName(), account.getPassword(), authorities);
+		return new User(account.getUserId(), account.getPassword(), authorities);
 	}
 	
 }

@@ -52,6 +52,11 @@ public class AccountController {
 		return mv;
 	}
 	
+	@GetMapping("/detail/update")
+	public String updateAccount() {
+		return "/account/updateAccount";
+	}
+	
 	
 	/**
 	//Top Page

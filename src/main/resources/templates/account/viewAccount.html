@@ -8,6 +8,7 @@
 <meta charset="utf-8">
 <meta name="_csrf" th:content="${_csrf.token}"/>
 <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+<link rel="stylesheet" th:href="@{/css/viewAccount.css}" ></link>
 </head>
 <body>
 <div layout:fragment="content_div">
@@ -36,7 +37,7 @@
 		<div class="shell">
 			<!-- Search, etc -->
 			<div class="options">
-				<span class="left" ><a href="#" class="ft28">アカウント情報</a></span>
+				<span class="left" ><a href="#" class="ft28">Myアカウント</a></span>
 			</div>
 			<!-- End Search, etc -->
 			<!-- Content -->
@@ -47,21 +48,49 @@
 						<div class="col-lg-12">
 							<div align="center" class="pull-right">
 								<button type="button" id="bt_back" name="submit" class="btn btn-primary btn-lg">戻る</button>
-								<button type="button" id="bt_update" name="submit" class="btn btn-success btn-lg">修正</button>
-								<button type="button" id="bt_delete" name="submit" class="btn btn-danger btn-lg">削除</button>
 							</div>
 							<div class="form-area">
-								<h3 style="margin-bottom: 25px;">商品詳細</h3>
-								<h2>ユーザID：<span th:text="${accountDetail.userId}"></span></h2>
-								<h2>姓 : <span th:text="${accountDetail.firstName}"></span></h2>
-								<h2>名 : <span th:text="${accountDetail.lastName}"></span></h2>
-								<h2>性別 : <span th:text="${accountDetail.gender}"></span></h2>
-								<h2> 年齢: <span th:text="${accountDetail.age}"></span></h2>
-								<h2> 郵便番号: <span th:text="${accountDetail.postcode}"></span></h2>
-								<h2> 住所1: <span th:text="${accountDetail.address1}"></span></h2>
-								<h2> 住所2: <span th:text="${accountDetail.address2}"></span></h2>
-								<h2> 建物名: <span th:text="${accountDetail.buildingName}"></span></h2>
-								<h2> 電話番号: <span th:text="${accountDetail.telephoneNumber}"></span></h2>
+								<h3 style="margin-bottom: 25px;">アカウント情報</h3>
+									<table border = "1">
+									<tr>
+										<td colspan="2">
+											<h2>ユーザID:<span th:text="${accountDetail.userId}"></span></h2>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2>姓:<span th:text="${accountDetail.firstName}"></span></h2>
+											<h2>名:<span th:text="${accountDetail.lastName}"></span></h2>
+										</td>
+										<td>
+											<button type="button" id="bt_edit" name="submit" class="btn btn-primary btn-lg">編集</button>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<h2>性別	:<span th:text="${accountDetail.gender}"></span></h2>
+											<h2>生年月日	:<span th:text="${accountDetail.dob}"></span></h2>
+										</td>
+									<tr>
+										<td>
+											<h2>郵便番号:<span th:text="${accountDetail.postcode}"></span></h2>
+											<h2>住所1:<span th:text="${accountDetail.address1}"></span></h2>
+											<h2>住所2:<span th:text="${accountDetail.address2}"></span></h2>
+											<h2>建物名:<span th:text="${accountDetail.buildingName}"></span></h2>
+										</td>
+										<td>
+											<button type="button" id="bt_edit" name="submit" class="btn btn-primary btn-lg">編集</button>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2>電話番号:<span th:text="${accountDetail.telephoneNumber}"></span></h2>
+										</td>
+										<td>
+											<button type="button" id="bt_edit" name="submit" class="btn btn-primary btn-lg">編集</button>
+										</td>
+									</tr>
+									</table>
 							</div>
 						</div>
 					</div>
@@ -90,9 +119,7 @@
 		
 		//商品修正ページ
 		$("#bt_update").click(function(){
-			var productId = $('#productId').val();
-			console.log("productId : " + productId);
-			window.location.href='/rosso-ec/shop/update/product/' + productId;
+			window.location.href='/rosso-ec/account/detail/update';
 		});
 		
 		//商品削除

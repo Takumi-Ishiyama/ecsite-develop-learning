@@ -1,5 +1,7 @@
 package com.example.ecsitedeveloplearning.ec.account.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -34,8 +36,8 @@ public class AccountDetail {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
-	@Column(name = "age")
-	private int age;
+	@Column(name = "dob")
+	private Date dob;
 	
 	@Column(name = "postcode")
 	private String postcode;
