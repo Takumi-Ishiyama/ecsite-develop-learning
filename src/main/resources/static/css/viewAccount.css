@@ -1,3 +1,24 @@
 @charset "UTF-8";
 
-#bt_edit{margin: 1em;}
+.a-text-bold {
+	font-weight: bold;
+}
+.a-item-list {
+	list-style: none;
+}
+.a-item {
+	border:1px solid;
+	width: 500px;
+	height: auto;
+}
+.a-section {
+	padding: 14px 18px!important;
+	position: relative; top: 5px; left: 5px;
+}
+.a-details {
+	position: absolute; top: 15px; left: 15px;
+}
+.a-button {
+	margin: 1px;
+	position: absolute; top: 15px; right: 15px;
+} 

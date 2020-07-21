@@ -51,46 +51,84 @@
 							</div>
 							<div class="form-area">
 								<h3 style="margin-bottom: 25px;">アカウント情報</h3>
-									<table border = "1">
-									<tr>
-										<td colspan="2">
-											<h2>ユーザID:<span th:text="${accountDetail.userId}"></span></h2>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2>姓:<span th:text="${accountDetail.firstName}"></span></h2>
-											<h2>名:<span th:text="${accountDetail.lastName}"></span></h2>
-										</td>
-										<td>
-											<button type="button" id="bt_edit" name="submit" class="btn btn-primary btn-lg">編集</button>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<h2>性別	:<span th:text="${accountDetail.gender}"></span></h2>
-											<h2>生年月日	:<span th:text="${accountDetail.dob}"></span></h2>
-										</td>
-									<tr>
-										<td>
-											<h2>郵便番号:<span th:text="${accountDetail.postcode}"></span></h2>
-											<h2>住所1:<span th:text="${accountDetail.address1}"></span></h2>
-											<h2>住所2:<span th:text="${accountDetail.address2}"></span></h2>
-											<h2>建物名:<span th:text="${accountDetail.buildingName}"></span></h2>
-										</td>
-										<td>
-											<button type="button" id="bt_edit" name="submit" class="btn btn-primary btn-lg">編集</button>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2>電話番号:<span th:text="${accountDetail.telephoneNumber}"></span></h2>
-										</td>
-										<td>
-											<button type="button" id="bt_edit" name="submit" class="btn btn-primary btn-lg">編集</button>
-										</td>
-									</tr>
-									</table>
+									<ul class="a-item-list">
+										<li  class="a-item">
+											<div class="a-section">
+												<div class = "a-details">
+													<div class="a-row">
+														<span class="a-text-bold">ユーザID</span><br />
+														<span th:text="${accountDetail.userId}"></span>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li  class="a-item">
+											<div class="a-section">
+												<div class = "a-details">
+													<div class="a-row">
+														<span class="a-text-bold">氏名</span><br />
+														<span th:text="${accountDetail.firstName}"></span>
+														<span th:text="${accountDetail.lastName}"></span>
+													</div>
+												</div>
+												<div class="a-button">
+													<button type="button" id="bt_edit" name="nameEdit" class="btn btn-primary btn-lg">編集</button>
+												</div>
+											</div>
+										</li>
+										<li  class="a-item">
+											<div class="a-section">
+												<div class = "a-details">
+													<div class="a-row">
+														<span class="a-text-bold">性別</span><br />
+														<span th:text="${accountDetail.gender}"></span>
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">生年月日</span><br />
+														<span th:text="${accountDetail.dob}"></span>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li  class="a-item">
+											<div class="a-section">
+												<div class = "a-details">
+													<div class="a-row">
+														<span class="a-text-bold">郵便番号</span><br />
+														<span th:text="${accountDetail.postcode}"></span>
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所1</span><br />
+														<span th:text="${accountDetail.address1}"></span>
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所2</span><br />
+														<span th:text="${accountDetail.address2}"></span>
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">建物名</span><br />
+														<span th:text="${accountDetail.buildingName}"></span>
+													</div>
+												</div>
+												<div class="a-button">
+													<button type="button" id="bt_edit" name="addressEdit" class="btn btn-primary btn-lg">編集</button>
+												</div>
+											</div>
+										</li>
+										<li  class="a-item">
+											<div class="a-section">
+												<div class = "a-details">
+													<div class="a-row">											
+														<span class="a-text-bold">電話番号</span><br />
+														<span th:text="${accountDetail.telephoneNumber}"></span>
+													</div>
+												</div>
+												<div class="a-button">
+													<button type="button" id="bt_edit" name="phoneEdit" class="btn btn-primary btn-lg">編集</button>
+												</div>
+											</div>
+										</li>
+									</ul>
 							</div>
 						</div>
 					</div>
