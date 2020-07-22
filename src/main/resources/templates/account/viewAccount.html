@@ -52,7 +52,7 @@
 							<div class="form-area">
 								<h3 style="margin-bottom: 25px;">アカウント情報</h3>
 									<ul class="a-item-list">
-										<li  class="a-item">
+										<li  class="a-item" style="border-top: 2px solid">
 											<div class="a-section">
 												<div class = "a-details">
 													<div class="a-row">
@@ -72,7 +72,7 @@
 													</div>
 												</div>
 												<div class="a-button">
-													<button type="button" id="bt_edit" name="nameEdit" class="btn btn-primary btn-lg">編集</button>
+													<button type="button" id="bt_name_edit" class="btn btn-primary btn-lg">編集</button>
 												</div>
 											</div>
 										</li>
@@ -95,15 +95,15 @@
 												<div class = "a-details">
 													<div class="a-row">
 														<span class="a-text-bold">郵便番号</span><br />
-														<span th:text="${accountDetail.postcode}"></span>
+														<span th:text="${accountDetail.postcode}"></span><br />
 													</div>
 													<div class="a-row">
 														<span class="a-text-bold">住所1</span><br />
-														<span th:text="${accountDetail.address1}"></span>
+														<span th:text="${accountDetail.address1}"></span><br />
 													</div>
 													<div class="a-row">
 														<span class="a-text-bold">住所2</span><br />
-														<span th:text="${accountDetail.address2}"></span>
+														<span th:text="${accountDetail.address2}"></span><br />
 													</div>
 													<div class="a-row">
 														<span class="a-text-bold">建物名</span><br />
@@ -111,7 +111,7 @@
 													</div>
 												</div>
 												<div class="a-button">
-													<button type="button" id="bt_edit" name="addressEdit" class="btn btn-primary btn-lg">編集</button>
+													<button type="button" id="bt_address_edit" class="btn btn-primary btn-lg">編集</button>
 												</div>
 											</div>
 										</li>
@@ -124,7 +124,7 @@
 													</div>
 												</div>
 												<div class="a-button">
-													<button type="button" id="bt_edit" name="phoneEdit" class="btn btn-primary btn-lg">編集</button>
+													<button type="button" id="bt_telephoneNumber_edit" class="btn btn-primary btn-lg">編集</button>
 												</div>
 											</div>
 										</li>
@@ -150,31 +150,25 @@
 	      xhr.setRequestHeader(header, token);
 	    });
 
-		//Topページ
 		$("#bt_back").click(function(){
-			window.location.href='/rosso-ec/shop/top'
+			window.location.href='/rosso-ec/shop/top'; 
+		});
+	    
+		//氏名変更
+		$("#bt_name_edit").click(function(){
+			window.location.href='/rosso-ec/account/detail/update/name'; 
 		});
 		
-		//商品修正ページ
-		$("#bt_update").click(function(){
+		//住所変更
+		$("#bt_address_edit").click(function(){
+			$('#editType').val('address');
 			window.location.href='/rosso-ec/account/detail/update';
 		});
 		
-		//商品削除
-		$("#bt_delete").click(function() {
-			var result = confirm("この商品を削除しますか");
-			var productId = $('#productId').val();
-			console.log("id : " + productId);
-			if (result) {
-				$.ajax({
-					type: "POST",
-					url: "/rosso-ec/shop/delete/product/" + productId,
-					success: function(result) {
-						console.log(result);
-						window.location = '/rosso-ec/shop/top'
-					}
-				});
-			}
+		//電話番号変更
+		$("#bt_telephoneNumber_edit").click(function(){
+			$('#editType').val('telephoneNumber');
+			window.location.href='/rosso-ec/account/detail/update';
 		});
 	});
 </script>

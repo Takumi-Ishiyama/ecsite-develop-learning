@@ -1,4 +1,8 @@
 @charset "UTF-8";
+ul {
+	overflow:hidden; /* あふれたら非表示 */
+	zoom:1;
+}
 
 .a-text-bold {
 	font-weight: bold;
@@ -10,15 +14,21 @@
 	border:1px solid;
 	width: 500px;
 	height: auto;
+	margin-top: -1px; /* 上下罫線の重複を解消 */
 }
 .a-section {
 	padding: 14px 18px!important;
-	position: relative; top: 5px; left: 5px;
+	padding-right: 70px;
 }
 .a-details {
-	position: absolute; top: 15px; left: 15px;
+	padding-right: 5%;
+	display:inline-block;
+	vertical-align: middle;
+	width: 85%;
 }
 .a-button {
-	margin: 1px;
-	position: absolute; top: 15px; right: 15px;
+	width: 15%;
+	margin-right: -70px;
+	display:inline-block;		/* ブロックレベル要素をインライン要素化 */
+	vertical-align: middle;
 } 

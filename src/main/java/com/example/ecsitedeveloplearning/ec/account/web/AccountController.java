@@ -11,7 +11,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecsitedeveloplearning.ec.account.model.AccountDetail;
@@ -52,9 +54,13 @@ public class AccountController {
 		return mv;
 	}
 	
-	@GetMapping("/detail/update")
-	public String updateAccount() {
-		return "/account/updateAccount";
+	@GetMapping("/detail/update/{editType}")
+	public ModelAndView updateAccount(
+			@PathVariable("editType") String editType
+	) {
+		ModelAndView mv = new ModelAndView("/account/updateAccount");
+		mv.addObject("editType", editType);
+		return mv;
 	}
 	
 	
