@@ -5,6 +5,8 @@
 	layout:decorator="layout/base-layout">
 <head>
 <meta charset="utf-8">
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<link rel="stylesheet" th:href="@{/css/viewAccount.css}" ></link>
 </head>
 <body>
 <div layout:fragment="content_div">
@@ -19,7 +21,7 @@
 				<div id="navigation">
 					<ul>
 						<li><a href="/rosso-ec/shop/top">Home</a></li>
-						<li><a href="#">My Account</a></li>
+						<li><a href="/rosso-ec/account/detail">My Account</a></li>
 						<li><a href="#">My Cart</a></li>
 					</ul>
 				</div>
@@ -44,8 +46,67 @@
 						<div class="col-lg-12">
 							<div class="form-area">
 								<form action="#" th:action="@{/account/detail/update}" method="post" enctype="multipart/form-data">
-									<br style="clear: both">
-									<h3 style="margin-bottom: 25px">アカウント情報変更フォーム</h3>
+									<div class="a-item">
+										<div class="a-section">
+											<div th:if="${editType} eq 'name'">
+											<input type="hidden" name="saveType" value="name"/>
+												<div class="a-row">
+													<span th:text="氏名変更"></span><br/>
+													<span class="a-text-bold">姓</span>
+													<input type="text" name="firstName" th:value="${accountDetail.firstName}" />
+												</div>
+												<div class="a-row">
+													<span class="a-text-bold">名</span>
+													<input type="text" name="lastName" th:value="${accountDetail.lastName}" />
+												</div>
+												<div class="a-button">
+													<button type="button" id="bt_edit_save" class="btn btn-primary btn-lg" style="margin: 10px 30px; width: 200px; height: 50px; text-align: center;">変更を保存</button>
+													<button type="button" id="bt_back" class="btn btn-primary btn-lg" style="margin: 10px 30px; width: 200px; height: 50px; text-align: center;">戻る</button>
+												</div>
+											</div>
+											<div th:if="${editType} eq 'address'">
+											<input type="hidden" name="saveType" value="address"/>
+												<span th:text="住所変更"></span>
+												<div class="a-row">
+														<span class="a-text-bold">郵便番号</span><br />
+														<input type="text" name="postcode1" th:value="${#strings.listSplit(accountDetail.postcode,'-')[0]}" size="3"> -
+														<input type="text" name="postcode2" th:value="${#strings.listSplit(accountDetail.postcode,'-')[1]}" 
+															onKeyUp="AjaxZip3.zip2addr('postcode1','postcode2','address1','address1');" size="4">
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所1</span><br />
+														<input type="text" name="address1" th:value="${accountDetail.address1}">
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所2</span><br />
+														<input type="text" name="address2" th:value="${accountDetail.address2}">
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">建物名</span><br />
+														<input type="text" name="buildingName" th:value="${accountDetail.buildingName}">
+													</div>
+													<div class="a-button">
+														<button type="button" id="bt_edit_save" class="btn btn-primary btn-lg" style="margin: 10px 30px; width: 200px; height: 50px; text-align: center;">変更を保存</button>
+														<button type="button" id="bt_back" class="btn btn-primary btn-lg" style="margin: 10px 30px; width: 200px; height: 50px; text-align: center;">戻る</button>
+													</div>
+											</div>
+												<div th:if="${editType} eq 'telephoneNumber'">
+												<input type="hidden" name="saveType" value="telephoneNumber"/>
+													<span th:text="電話番号変更"></span>
+													<div class="a-row">
+															<span class="a-text-bold">電話番号</span><br />
+															<input type="text" name="telephoneNumber1" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[0]}" size="5"> - 
+															<input type="text" name="telephoneNumber2" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[1]}" size="5"> - 
+															<input type="text" name="telephoneNumber3" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[2]}" size="5">
+													</div>
+													<div class="a-button">
+														<button type="button" id="bt_edit_save" class="btn btn-primary btn-lg" style="{margin: 10px 30px; width: 200px; height: 50px; text-align: center;}">変更を保存</button>
+														<button type="button" id="bt_back" class="btn btn-primary btn-lg" style="{margin: 10px 30px; width: 200px; height: 50px; text-align: center;}">戻る</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -62,6 +123,21 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#bt_back").click(function() {
+			var result = confirm('変更を破棄します。\r\nよろしいですか？');
+			if(result) {
+				window.location.href='/rosso-ec/shop/top';
+			} else {
+				return false;
+			};
+		});
+		
+		$("#bt_edit_save").click(function() {
+			var result = confirm('変更を保存します。\r\nよろしいですか？');
+			if(result) {
+				
+			} else {
+				return false;
+			};
 			window.location.href='/rosso-ec/shop/top';
 		});
 	});

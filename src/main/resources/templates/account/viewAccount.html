@@ -23,7 +23,7 @@
 				<div id="navigation">
 					<ul>
 						<li><a href="/rosso-ec/shop/top">Home</a></li>
-						<li><a href="#">My Account</a></li>
+						<li><a href="/rosso-ec/account/detail">My Account</a></li>
 						<li><a href="#">My Cart</a></li>
 					</ul>
 				</div>
@@ -161,14 +161,12 @@
 		
 		//住所変更
 		$("#bt_address_edit").click(function(){
-			$('#editType').val('address');
-			window.location.href='/rosso-ec/account/detail/update';
+			window.location.href='/rosso-ec/account/detail/update/address';
 		});
 		
 		//電話番号変更
 		$("#bt_telephoneNumber_edit").click(function(){
-			$('#editType').val('telephoneNumber');
-			window.location.href='/rosso-ec/account/detail/update';
+			window.location.href='/rosso-ec/account/detail/update/telephoneNumber';
 		});
 	});
 </script>

@@ -2,18 +2,13 @@ package com.example.ecsitedeveloplearning.ec.account.web;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecsitedeveloplearning.ec.account.model.AccountDetail;
@@ -36,31 +31,40 @@ public class AccountController {
 	
 	//アカウントページを表示
 	@GetMapping("/detail")
-	public ModelAndView viewAccount(HttpServletRequest request, Principal principal) {
+	public ModelAndView viewAccount(Principal principal) {
 		ModelAndView mv = new ModelAndView("account/viewAccount");
 		
 		//HttpSession session = request.getSession();
 		//SecurityContext secuirtyContext = (SecurityContext)session.getAttribute("SPRING_SECURITY_CONTEXT");
 		//Authentication authentication = secuirtyContext.getAuthentication();
 
-		Authentication auth = (Authentication)principal;
-		User user = (User)auth.getPrincipal();
-		
-		AccountDetail accountDetail = new AccountDetail();
-		accountDetail = accountService.getAccountDetail(user.getUsername());
+		AccountDetail accountDetail = getAccountDetail(principal);
 		mv.addObject("accountDetail", accountDetail);
-		mv.addObject("userId", user.getUsername());
-		
+	
 		return mv;
 	}
 	
 	@GetMapping("/detail/update/{editType}")
 	public ModelAndView updateAccount(
+			Principal principal,
 			@PathVariable("editType") String editType
 	) {
 		ModelAndView mv = new ModelAndView("/account/updateAccount");
+
+		AccountDetail accountDetail = getAccountDetail(principal);
+		mv.addObject("accountDetail", accountDetail);
 		mv.addObject("editType", editType);
 		return mv;
+	}
+	
+	private AccountDetail getAccountDetail(Principal principal) {
+		Authentication auth = (Authentication)principal;
+		User user = (User)auth.getPrincipal();
+
+		AccountDetail accountDetail = new AccountDetail();
+		accountDetail = accountService.getAccountDetail(user.getUsername());
+		return accountDetail; 
+				
 	}
 	
 	

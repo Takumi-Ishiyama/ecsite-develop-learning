@@ -32,3 +32,7 @@ ul {
 	display:inline-block;		/* ブロックレベル要素をインライン要素化 */
 	vertical-align: middle;
 } 
+
+.a-row {
+	margin: 0.5em;
+}
