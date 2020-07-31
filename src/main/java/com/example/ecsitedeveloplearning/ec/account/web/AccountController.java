@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,6 +57,26 @@ public class AccountController {
 		mv.addObject("editType", editType);
 		return mv;
 	}
+
+	@PostMapping("/detail/update/save")
+	public  ModelAndView saveAccount(
+			Principal principal,
+			@PathVariable String userId,
+			@PathVariable String firstName,
+			@PathVariable String lastName,
+			@PathVariable String postcode,
+			@PathVariable String address1,
+			@PathVariable String address2,
+			@PathVariable String buildingName,
+			@PathVariable String telephoneNumber
+	) {
+		accountService.saveAccount(userId, firstName,lastName,postcode,address1,address2,buildingName,telephoneNumber);
+		ModelAndView mv = new ModelAndView("/account/viewAccount");
+
+		AccountDetail accountDetail = getAccountDetail(principal);
+		mv.addObject("accountDetail", accountDetail);
+		return mv;
+	}	
 	
 	private AccountDetail getAccountDetail(Principal principal) {
 		Authentication auth = (Authentication)principal;
@@ -63,9 +84,10 @@ public class AccountController {
 
 		AccountDetail accountDetail = new AccountDetail();
 		accountDetail = accountService.getAccountDetail(user.getUsername());
-		return accountDetail; 
-				
+		return accountDetail;
 	}
+
+	
 	
 	
 	/**
