@@ -15,8 +15,8 @@ public interface AccountDetailRepository extends JpaRepository<AccountDetail, Lo
 	
 	@Modifying
 	@Transactional
-	@Query(value="update account_details ad setad.firstName = ?2, ad.lastName = ?3, ad.postcode = ?4, ad.address1 = ?5, ad.address2 = ?6, ad.buildingName = ?7, ad.telephoneNumber = ?8 where ad.userId = ?1;", nativeQuery = true)
-	void saveAccount(
+	@Query(value="update account_details ad set ad.first_name = ?2, ad.last_name = ?3, ad.postcode = ?4, ad.address1 = ?5, ad.address2 = ?6, ad.building_name = ?7, ad.telephone_number = ?8 where ad.user_id = ?1", nativeQuery = true)
+	void updateAccount(
 			String userId,
 			String firstName,
 			String lastName,

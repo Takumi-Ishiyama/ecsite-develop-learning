@@ -7,9 +7,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecsitedeveloplearning.ec.account.model.AccountDetail;
@@ -60,17 +62,24 @@ public class AccountController {
 
 	@PostMapping("/detail/update/save")
 	public  ModelAndView saveAccount(
+//			@ModelAttribute AccountDetail accountDetail
 			Principal principal,
-			@PathVariable String userId,
-			@PathVariable String firstName,
-			@PathVariable String lastName,
-			@PathVariable String postcode,
-			@PathVariable String address1,
-			@PathVariable String address2,
-			@PathVariable String buildingName,
-			@PathVariable String telephoneNumber
+			@RequestParam("userId") String userId,
+			@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName,
+			@RequestParam("postcode1") String postcode1,
+			@RequestParam("postcode2") String postcode2,
+			@RequestParam("address1") String address1,
+			@RequestParam("address2") String address2,
+			@RequestParam("buildingName") String buildingName,
+			@RequestParam("telephoneNumber1") String telephoneNumber1,
+			@RequestParam("telephoneNumber2") String telephoneNumber2,
+			@RequestParam("telephoneNumber3") String telephoneNumber3
 	) {
-		accountService.saveAccount(userId, firstName,lastName,postcode,address1,address2,buildingName,telephoneNumber);
+		String postcode = postcode1 + "-" +  postcode2;
+		String telephoneNumber = telephoneNumber1 + "-" + telephoneNumber2 + "-" +  telephoneNumber3;
+		
+		accountService.updateAccount(userId, firstName,lastName,postcode,address1,address2,buildingName,telephoneNumber);
 		ModelAndView mv = new ModelAndView("/account/viewAccount");
 
 		AccountDetail accountDetail = getAccountDetail(principal);

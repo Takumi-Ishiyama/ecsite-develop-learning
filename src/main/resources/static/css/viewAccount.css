@@ -36,3 +36,7 @@ ul {
 .a-row {
 	margin: 0.5em;
 }
+input[readonly] {
+		   background-color: #797979;
+		   color: #0000FF;
+}

@@ -13,7 +13,7 @@ public class AccountService {
 		return accountDetailRepository.findByUserId(userId);
 	}
 	
-	public void saveAccount(
+	public void updateAccount(
 			String userId,
 			String firstName,
 			String lastName,
@@ -23,7 +23,7 @@ public class AccountService {
 			String buildingName,
 			String telephoneNumber
 	) {
-		accountDetailRepository.saveAccount(userId,firstName,lastName,postcode,address1,address2,buildingName,telephoneNumber);
+		accountDetailRepository.updateAccount(userId,firstName,lastName,postcode,address1,address2,buildingName,telephoneNumber);
 	}
 	
 	

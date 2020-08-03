@@ -10,8 +10,8 @@ import com.example.ecsitedeveloplearning.ec.account.model.Account;
 public interface AccountRepository extends JpaRepository<Account, Long>{
 	// ここはDBに Access するためのRepositoryです。
 	// JPaを extendsして設定する必要があります。
-	@Query(value = "select * from rosso_ec.accounts where userId = ?1 and password = ?2", nativeQuery = true)
-	public Account authCheck(String userId, String password);
+//	@Query(value = "select * from rosso_ec.accounts where userId = ?1 and password = ?2", nativeQuery = true)
+//	public Account authCheck(String userId, String password);
 
 	public Account findByUserId(String userId);
 	

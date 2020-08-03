@@ -46,7 +46,7 @@
 						<div class="col-lg-12">
 							<div class="form-area">
 								<form id="updateForm" action="#" th:action="@{/account/detail/update/save}" method="post" enctype="multipart/form-data">
-								<input type="hidden" name="userId" value="${accountDetail.userId}" />
+								<input type="hidden" name="userId" th:value="${accountDetail.userId}" />
 									<div class="a-item">
 										<div class="a-section">
 											<div th:if="${editType} eq 'name'">
@@ -59,30 +59,96 @@
 													<span class="a-text-bold">名</span>
 													<input type="text" name="lastName" th:value="${accountDetail.lastName}" />
 												</div>
-											</div>
-											<div th:if="${editType} eq 'address'">
-												<span th:text="住所変更"></span>
 												<div class="a-row">
 														<span class="a-text-bold">郵便番号</span><br />
-														<input type="text" name="postcode1" th:value="${#strings.listSplit(accountDetail.postcode,'-')[0]}" size="3"> -
+														<input type="text" name="postcode1" th:value="${#strings.listSplit(accountDetail.postcode,'-')[0]}" size="3" readonly> -
 														<input type="text" name="postcode2" th:value="${#strings.listSplit(accountDetail.postcode,'-')[1]}" 
-															onKeyUp="AjaxZip3.zip2addr('postcode1','postcode2','address1','address1');" size="4">
+															onKeyUp="AjaxZip3.zip2addr('postcode1','postcode2','address1','address1');" size="4" readonly>
 													</div>
 													<div class="a-row">
 														<span class="a-text-bold">住所1</span><br />
-														<input type="text" name="address1" th:value="${accountDetail.address1}">
+														<input type="text" name="address1" th:value="${accountDetail.address1}" readonly>
 													</div>
 													<div class="a-row">
 														<span class="a-text-bold">住所2</span><br />
-														<input type="text" name="address2" th:value="${accountDetail.address2}">
+														<input type="text" name="address2" th:value="${accountDetail.address2}" readonly>
 													</div>
 													<div class="a-row">
 														<span class="a-text-bold">建物名</span><br />
-														<input type="text" name="buildingName" th:value="${accountDetail.buildingName}">
+														<input type="text" name="buildingName" th:value="${accountDetail.buildingName}" readonly>
+													</div>
+													<div class="a-row">
+															<span class="a-text-bold">電話番号</span><br />
+															<input type="text" name="telephoneNumber1" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[0]}" size="5" readonly> - 
+															<input type="text" name="telephoneNumber2" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[1]}" size="5" readonly> - 
+															<input type="text" name="telephoneNumber3" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[2]}" size="5" readonly>
+													</div>
+											</div>
+											<div th:if="${editType} eq 'address'">
+												<span th:text="住所変更"></span>
+													<div class="a-row">
+													<span th:text="氏名変更"></span><br/>
+													<span class="a-text-bold">姓</span>
+													<input type="text" name="firstName" th:value="${accountDetail.firstName}" readonly/>
+												</div>
+												<div class="a-row">
+													<span class="a-text-bold">名</span>
+													<input type="text" name="lastName" th:value="${accountDetail.lastName}" readonly/>
+												</div>
+												<div class="a-row">
+														<span class="a-text-bold">郵便番号</span><br />
+														<input type="text" name="postcode1" th:value="${#strings.listSplit(accountDetail.postcode,'-')[0]}" size="3" > -
+														<input type="text" name="postcode2" th:value="${#strings.listSplit(accountDetail.postcode,'-')[1]}" 
+															onKeyUp="AjaxZip3.zip2addr('postcode1','postcode2','address1','address1');" size="4" >
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所1</span><br />
+														<input type="text" name="address1" th:value="${accountDetail.address1}" >
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所2</span><br />
+														<input type="text" name="address2" th:value="${accountDetail.address2}" >
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">建物名</span><br />
+														<input type="text" name="buildingName" th:value="${accountDetail.buildingName}" >
+													</div>
+													<div class="a-row">
+															<span class="a-text-bold">電話番号</span><br />
+															<input type="text" name="telephoneNumber1" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[0]}" size="5" readonly> - 
+															<input type="text" name="telephoneNumber2" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[1]}" size="5" readonly> - 
+															<input type="text" name="telephoneNumber3" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[2]}" size="5" readonly>
 													</div>
 											</div>
 												<div th:if="${editType} eq 'telephoneNumber'">
 													<span th:text="電話番号変更"></span>
+																										<div class="a-row">
+													<span th:text="氏名変更"></span><br/>
+													<span class="a-text-bold">姓</span>
+													<input type="text" name="firstName" th:value="${accountDetail.firstName}" readonly/>
+												</div>
+												<div class="a-row">
+													<span class="a-text-bold">名</span>
+													<input type="text" name="lastName" th:value="${accountDetail.lastName}" readonly/>
+												</div>
+												<div class="a-row">
+														<span class="a-text-bold">郵便番号</span><br />
+														<input type="text" name="postcode1" th:value="${#strings.listSplit(accountDetail.postcode,'-')[0]}" size="3" readonly> -
+														<input type="text" name="postcode2" th:value="${#strings.listSplit(accountDetail.postcode,'-')[1]}" 
+															onKeyUp="AjaxZip3.zip2addr('postcode1','postcode2','address1','address1');" size="4"readonly >
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所1</span><br />
+														<input type="text" name="address1" th:value="${accountDetail.address1}" readonly>
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">住所2</span><br />
+														<input type="text" name="address2" th:value="${accountDetail.address2}" readonly>
+													</div>
+													<div class="a-row">
+														<span class="a-text-bold">建物名</span><br />
+														<input type="text" name="buildingName" th:value="${accountDetail.buildingName}" readonly>
+													</div>
 													<div class="a-row">
 															<span class="a-text-bold">電話番号</span><br />
 															<input type="text" name="telephoneNumber1" th:value="${#strings.listSplit(accountDetail.telephoneNumber,'-')[0]}" size="5"> - 
@@ -110,7 +176,9 @@
 </div>
 <content layout:fragment="local_script">
 <script type="text/javascript">
+
 	$(document).ready(function() {
+		
 		$("#bt_back").click(function() {
 			var result = confirm('変更を破棄します。\r\nよろしいですか？');
 			if(result) {
@@ -121,16 +189,6 @@
 		});
 		
 		$("#bt_edit_save").click(function() {
-			var telephoneNumber = 
-				document.getElementsByName('telephoneNumber1') + "-"
-				document.getElementsByName('telephoneNumber2') + "-"
-				document.getElementsByName('telephoneNumber3');
-			var postcode = 
-				document.getElementsByName('postcode1') + "-" + document.getElementsByName('postcode2');
-			
-			$("updateForm").append("<input type='hidden' name='postcode' class='postcode'>").attr("#postcode",postcode);
-			$("updateForm").append("<input type='hidden' name='telephoneNumber' class='telephoneNumber'>").attr("#telephoneNumber",telephoneNumber);
-			
 			var result = confirm('変更を保存します。\r\nよろしいですか？');
 			if(result) {
 				$("#updateForm").submit();
