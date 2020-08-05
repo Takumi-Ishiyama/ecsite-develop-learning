@@ -145,4 +145,18 @@ public class ShopController {
 		return "redirect:/shop/top";
 	}
 
+	//商品検索
+	@PostMapping("/search/{searchword}")
+	public ModelAndView searchProduct(@PathVariable String searchword) {
+		ModelAndView mv = new ModelAndView();
+		List<Product> products = shopService.findProductBySearchword(searchword);
+		
+		mv.addObject("products",products);
+		return mv;
+	}
+	
+	@GetMapping("/map")
+	public String getMap() {
+		return "shop/viewMap";
+	}
 }

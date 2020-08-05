@@ -126,8 +126,15 @@ public class ShopService {
 		productRepository.deleteById(productId);
 	}
 	
+	//商品検索
 	public List<Product> findAllByCategory(int id) {
 		List<Product> products = productRepository.findByCategoryId(new Category(id, null));
+		return products;
+	}
+	
+	//商品検索(キーワード検索)
+	public List<Product> findProductBySearchword(String searchword) {
+		List<Product> products = productRepository.findProductBySearchword(searchword);
 		return products;
 	}
 

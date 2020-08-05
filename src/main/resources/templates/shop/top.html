@@ -18,6 +18,7 @@
 						<li><a href="/rosso-ec/shop/top">Home</a></li>
 						<li><a href="/rosso-ec/account/detail">My Account</a></li>
 						<li><a href="#">My Cart</a></li>
+						<li><a href="/rosso-ec/shop/map">Map</a></li>
 						<li class="last"><a href="#">Contact</a></li>
 					</ul>
 				</div>
@@ -43,7 +44,7 @@
 				<div class="search">
 					<form action="#" method="post">
 						<span class="field">
-							<input type="text" class="blink" value="SEARCH" title="SEARCH" />
+							<input type="text" class="blink" placeholder="SEARCH" title="SEARCH" />
 						</span>
 						<input type="text" class="search-submit" value="GO" />
 					</form>
@@ -137,7 +138,7 @@
 		$("#bt_back").click(function() {
 			window.location.href='/rosso-ec/shop/top';
 		});
-
+		
 	});
 
 	function getContextPath() {
@@ -145,6 +146,7 @@
 		var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1));
 		return window.location.origin + contextPath + "";
 	};
+	
 </script>
 </content>
 </body>

@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/","/shop/top/**","/shop/detail/**")
+				.antMatchers("/","/shop/top/**","/shop/detail/**","/shop/map")
 					.permitAll()	//認証を必要としないURL
 				.antMatchers("/shop/register/**","/shop/update/**","/shop/delete/**")
 					.hasRole("ADMIN")

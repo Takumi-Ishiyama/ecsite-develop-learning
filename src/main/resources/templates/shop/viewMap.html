@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/base-layout">
+<head>
+<meta charset="utf-8">
+<style>
+	#map { height: 150%; width: 80%; margin: 0 auto;
+	}
+</style>
+<script src="http://maps.google.com/maps/api/js?key={APIキー}&language=ja"></script>
+</head>
+<body>
+<div layout:fragment="content_div">
+	<!-- Top -->
+	<div id="top">
+		<div class="shell" style="height: 30%">
+			<!-- Header -->
+			<div id="header">
+				<h1 id="logo">
+					<a href="/rosso-ec/shop/top"><img th:src="@{/css/images/logo.jpg}" style="width: 200px; height: 61px; float: left;"></a>
+				</h1>
+				<div id="navigation">
+					<ul>
+						<li><a href="/rosso-ec/shop/top">Home</a></li>
+						<li><a href="/rosso-ec/account/detail">My Account</a></li>
+						<li><a href="#">My Cart</a></li>
+						<li><a href="/rosso-ec/shop/map">Map</a></li>
+						<li class="last"><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- End Header -->
+			<!-- Slider -->
+			<div id="slider">
+				<div id="slider-holder">
+					<ul>
+						<!-- <li><a href="#"><img th:src="@{/css/images/top.jpg}" alt="" /></a></li> -->
+					</ul>
+				</div>
+			</div>
+			<!-- End Slider -->
+		</div>
+		<div id="map"></div>
+	</div>
+</div>
+<content layout:fragment="local_script">
+<script type="text/javascript">
+	/**
+	実行タイミングメモ
+	1.ページの読み込みが始まる
+	2.HTMLの読み込みが終わる
+	3.$(document).readyが実行
+	4.画像など含めすべてのコンテンツの読み込みが終わる
+	5.$(window).loadが実行
+	*/
+	function getContextPath() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1));
+		return window.location.origin + contextPath + "";
+	};
+	
+	var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
+	var Options = {
+		zoom:15,      //地図の縮尺値
+		center:MyLatLng,    //地図の中心座標
+		mapTypeId:'roadmap'   //地図の種類
+	};
+	var map = new google.maps.Map(document.getElementById('map'), Options);
+</script>
+</content>
+</body>
+</html>
